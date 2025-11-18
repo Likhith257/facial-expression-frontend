@@ -48,24 +48,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 md:py-32 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            Ready to Get Started?
-          </h2>
-          <p className="text-xl text-slate-600 mb-8">
-            Experience the power of our facial recognition technology today.
-          </p>
-          <Link
-            to="/recognition"
-            className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-2xl hover:scale-105 transition transform"
-          >
-            Start Recognizing Faces
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Link>
-        </div>
-      </section>
     </Layout>
   );
 }
