@@ -3,7 +3,7 @@ import Layout from "@/components/Layout";
 import { Upload, Camera, Loader2, CheckCircle, AlertCircle, Download, Trash2, Settings } from "lucide-react";
 
 type DetectionModel = "yolo" | "efficientb3";
-type RecognitionModel = "arcface" | "swin" | "vit";
+type RecognitionModel = "yolo" | "efficientb3" | "arcface" | "swin" | "vit";
 
 export default function Recognition() {
   const [activeTab, setActiveTab] = useState<"upload" | "webcam">("upload");
@@ -47,6 +47,8 @@ export default function Recognition() {
       };
 
       const recognitionNames: Record<RecognitionModel, string> = {
+        yolo: "YOLOv8",
+        efficientb3: "EfficientNet-B3",
         arcface: "ArcFace",
         swin: "Swin Transformer",
         vit: "Vision Transformer (ViT)"
@@ -328,12 +330,18 @@ export default function Recognition() {
                     onChange={(e) => setRecognitionModel(e.target.value as RecognitionModel)}
                     className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                   >
+                    <option value="yolo">YOLOv8 (Fast Detection)</option>
+                    <option value="efficientb3">EfficientNet-B3 (Lightweight)</option>
                     <option value="arcface">ArcFace (Industry Standard)</option>
                     <option value="swin">Swin Transformer</option>
                     <option value="vit">Vision Transformer (ViT)</option>
                   </select>
                   <p className="text-xs text-slate-500">
-                    {recognitionModel === "arcface"
+                    {recognitionModel === "yolo"
+                      ? "Real-time face detection and embedding extraction"
+                      : recognitionModel === "efficientb3"
+                      ? "Efficient embedding model for mobile and edge devices"
+                      : recognitionModel === "arcface"
                       ? "Industry-standard face embedding model"
                       : recognitionModel === "swin"
                       ? "Transformer-based with hierarchical structure"
