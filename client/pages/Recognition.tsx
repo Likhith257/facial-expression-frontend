@@ -164,8 +164,23 @@ export default function Recognition() {
                   {!selectedImage ? (
                     <div
                       onClick={() => fileInputRef.current?.click()}
-                      className="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition"
-                    />
+                      className="rounded-lg text-center transition border-2 border-dashed border-slate-300 p-8 md:p-32 cursor-pointer hover:border-blue-400 hover:bg-blue-50"
+                    >
+                      <Upload className="w-12 h-12 text-slate-400 mx-auto mb-3" />
+                      <p className="font-semibold text-slate-900 mb-1">
+                        Click to upload an image
+                      </p>
+                      <p className="text-sm text-slate-600">
+                        or drag and drop (JPG, PNG, WebP)
+                      </p>
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileSelect}
+                        className="hidden"
+                      />
+                    </div>
                   ) : (
                     <div className="relative bg-white rounded-lg overflow-hidden border border-slate-200">
                       <img
@@ -181,8 +196,8 @@ export default function Recognition() {
                     </div>
                   )}
                   {!selectedImage && (
-                    <div className="border border-slate-200 rounded-lg p-8 text-center bg-white">
-                      <div className="flex flex-col items-center justify-center h-full">
+                    <div className="border border-slate-200 rounded-lg p-6 text-center bg-white">
+                      <div className="flex flex-col items-center justify-center h-full mb-8">
                         <div className="p-4 bg-blue-100 rounded-full mb-4">
                           <Camera className="w-8 h-8 text-blue-600" />
                         </div>
