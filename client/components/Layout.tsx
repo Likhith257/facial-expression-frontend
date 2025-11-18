@@ -12,29 +12,26 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 FaceDetect
               </span>
             </Link>
-            
+
             <nav className="hidden md:flex items-center gap-8">
-              <Link 
-                to="/" 
+              <Link
+                to="/"
                 className="text-sm font-medium text-slate-700 hover:text-blue-600 transition"
               >
                 Home
               </Link>
-              <Link 
-                to="/recognition" 
+              <Link
+                to="/recognition"
                 className="text-sm font-medium text-slate-700 hover:text-blue-600 transition"
               >
                 Recognize
               </Link>
             </nav>
-
           </div>
         </div>
       </header>
 
-      <main className="flex-1">
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
 
       <footer className="border-t border-slate-200 bg-slate-50 mt-16" />
     </div>

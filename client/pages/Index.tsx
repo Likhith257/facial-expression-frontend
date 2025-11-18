@@ -10,12 +10,14 @@ export default function Index() {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50" />
         <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
         <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
-        
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 -mb-5px">
           <div className="text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-200 rounded-full mb-6">
               <Zap className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-medium text-blue-600">Powered by Advanced Models</span>
+              <span className="text-sm font-medium text-blue-600">
+                Powered by Advanced Models
+              </span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -36,7 +38,8 @@ export default function Index() {
             Ready to Get Started?
           </div>
           <div className="text-xl text-slate-600 mb-8">
-            Experience the power of our facial expression recognition technology today.
+            Experience the power of our facial expression recognition technology
+            today.
           </div>
           <a
             href="https://53443c32a5fe4b468bbf0ac30e6d6b70-e2dc4119e9b446c2b9753ca20.fly.dev/recognition"
@@ -47,7 +50,6 @@ export default function Index() {
           </a>
         </div>
       </section>
-
     </Layout>
   );
 }
