@@ -129,8 +129,8 @@ export default function Recognition() {
           </div>
 
           {/* Main Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Input Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 -mb-px">
+            {/* Input Section - spans 2 columns */}
             <div className="lg:col-span-2 space-y-6">
               {/* Tab Selection */}
               <div className="flex gap-2 bg-slate-100 p-1 rounded-lg">
@@ -165,22 +165,7 @@ export default function Recognition() {
                     <div
                       onClick={() => fileInputRef.current?.click()}
                       className="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition"
-                    >
-                      <Upload className="w-12 h-12 text-slate-400 mx-auto mb-3" />
-                      <p className="font-semibold text-slate-900 mb-1">
-                        Click to upload an image
-                      </p>
-                      <p className="text-sm text-slate-600">
-                        or drag and drop (JPG, PNG, WebP)
-                      </p>
-                      <input
-                        ref={fileInputRef}
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFileSelect}
-                        className="hidden"
-                      />
-                    </div>
+                    />
                   ) : (
                     <div className="relative bg-white rounded-lg overflow-hidden border border-slate-200">
                       <img
@@ -193,6 +178,21 @@ export default function Recognition() {
                           <CheckCircle className="w-16 h-16 text-green-400" />
                         </div>
                       )}
+                    </div>
+                  )}
+                  {!selectedImage && (
+                    <div className="border border-slate-200 rounded-lg p-8 text-center bg-white">
+                      <div className="flex flex-col items-center justify-center h-full">
+                        <div className="p-4 bg-blue-100 rounded-full mb-4">
+                          <Camera className="w-8 h-8 text-blue-600" />
+                        </div>
+                        <div className="text-slate-600 mb-2">
+                          Upload an image or use your webcam to get started
+                        </div>
+                        <div className="text-sm text-slate-500">
+                          Results will appear here
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -274,8 +274,8 @@ export default function Recognition() {
               )}
             </div>
 
-            {/* Model Selection & Results Section */}
-            <div className="space-y-6">
+            {/* Model Selection Panel - right column */}
+            <div className="mb-2 pl-px">
               {/* Model Selection Panel */}
               <div className="bg-white rounded-lg border border-slate-200 p-6 space-y-4">
                 <div className="flex items-center gap-2 mb-4">
@@ -333,116 +333,104 @@ export default function Recognition() {
                   </p>
                 </div>
               </div>
-
-              {/* Results Panel */}
-              <div className="bg-white rounded-lg border border-slate-200 p-6">
-                {!selectedImage && !results && (
-                  <div className="h-full flex flex-col items-center justify-center text-center">
-                    <div className="p-4 bg-blue-100 rounded-full mb-4">
-                      <Camera className="w-8 h-8 text-blue-600" />
-                    </div>
-                    <p className="text-slate-600 mb-2">
-                      Upload an image or use your webcam to get started
-                    </p>
-                    <p className="text-sm text-slate-500">
-                      Results will appear here
-                    </p>
-                  </div>
-                )}
-
-                {results && (
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-2 text-green-600">
-                      <CheckCircle className="w-6 h-6" />
-                      <span className="font-semibold">Face(s) Detected Successfully</span>
-                    </div>
-
-                    {/* Model Info */}
-                    <div className="bg-slate-50 rounded-lg p-4 space-y-2 border border-slate-200">
-                      <div>
-                        <p className="text-xs text-slate-600 mb-1">Detection Model</p>
-                        <p className="text-sm font-semibold text-slate-900">
-                          {results.detectionModel}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-xs text-slate-600 mb-1">Recognition Model</p>
-                        <p className="text-sm font-semibold text-slate-900">
-                          {results.recognitionModel}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Overall Stats */}
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="bg-blue-50 rounded-lg p-3">
-                        <p className="text-xs text-slate-600 mb-1">Overall Confidence</p>
-                        <p className="text-xl font-bold text-blue-600">
-                          {results.confidence}%
-                        </p>
-                      </div>
-                      <div className="bg-purple-50 rounded-lg p-3">
-                        <p className="text-xs text-slate-600 mb-1">Processing Time</p>
-                        <p className="text-xl font-bold text-purple-600">
-                          {results.processingTime}ms
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Detected Faces */}
-                    <div>
-                      <h3 className="font-semibold text-slate-900 mb-3 text-sm">
-                        Detected Faces ({results.faces.length})
-                      </h3>
-                      <div className="space-y-2">
-                        {results.faces.map((face: any) => (
-                          <div
-                            key={face.id}
-                            className="bg-slate-50 rounded-lg p-3 border border-slate-200 text-sm"
-                          >
-                            <div className="flex items-start justify-between mb-2">
-                              <span className="font-medium text-slate-900">
-                                Face #{face.id}
-                              </span>
-                              <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">
-                                {face.confidence}%
-                              </span>
-                            </div>
-                            <div className="grid grid-cols-2 gap-1 text-xs">
-                              <div>
-                                <p className="text-slate-600">Expression</p>
-                                <p className="font-medium text-slate-900 capitalize">
-                                  {face.expression}
-                                </p>
-                              </div>
-                              <div>
-                                <p className="text-slate-600">Age</p>
-                                <p className="font-medium text-slate-900">
-                                  {face.age}
-                                </p>
-                              </div>
-                              <div className="col-span-2">
-                                <p className="text-slate-600">Gender</p>
-                                <p className="font-medium text-slate-900">
-                                  {face.gender}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Export Button */}
-                    <button className="w-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold py-2 rounded-lg transition flex items-center justify-center gap-2 text-sm">
-                      <Download className="w-4 h-4" />
-                      Download Report
-                    </button>
-                  </div>
-                )}
-              </div>
             </div>
           </div>
+
+          {/* Results Panel - below upload section */}
+          {results && (
+            <div className="mt-6">
+              <div className="bg-white rounded-lg border border-slate-200 p-6">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-2 text-green-600">
+                    <CheckCircle className="w-6 h-6" />
+                    <span className="font-semibold">Face(s) Detected Successfully</span>
+                  </div>
+
+                  {/* Model Info */}
+                  <div className="bg-slate-50 rounded-lg p-4 space-y-2 border border-slate-200">
+                    <div>
+                      <p className="text-xs text-slate-600 mb-1">Detection Model</p>
+                      <p className="text-sm font-semibold text-slate-900">
+                        {results.detectionModel}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-slate-600 mb-1">Recognition Model</p>
+                      <p className="text-sm font-semibold text-slate-900">
+                        {results.recognitionModel}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Overall Stats */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="bg-blue-50 rounded-lg p-3">
+                      <p className="text-xs text-slate-600 mb-1">Overall Confidence</p>
+                      <p className="text-xl font-bold text-blue-600">
+                        {results.confidence}%
+                      </p>
+                    </div>
+                    <div className="bg-purple-50 rounded-lg p-3">
+                      <p className="text-xs text-slate-600 mb-1">Processing Time</p>
+                      <p className="text-xl font-bold text-purple-600">
+                        {results.processingTime}ms
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Detected Faces */}
+                  <div>
+                    <h3 className="font-semibold text-slate-900 mb-3 text-sm">
+                      Detected Faces ({results.faces.length})
+                    </h3>
+                    <div className="space-y-2">
+                      {results.faces.map((face: any) => (
+                        <div
+                          key={face.id}
+                          className="bg-slate-50 rounded-lg p-3 border border-slate-200 text-sm"
+                        >
+                          <div className="flex items-start justify-between mb-2">
+                            <span className="font-medium text-slate-900">
+                              Face #{face.id}
+                            </span>
+                            <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">
+                              {face.confidence}%
+                            </span>
+                          </div>
+                          <div className="grid grid-cols-2 gap-1 text-xs">
+                            <div>
+                              <p className="text-slate-600">Expression</p>
+                              <p className="font-medium text-slate-900 capitalize">
+                                {face.expression}
+                              </p>
+                            </div>
+                            <div>
+                              <p className="text-slate-600">Age</p>
+                              <p className="font-medium text-slate-900">
+                                {face.age}
+                              </p>
+                            </div>
+                            <div className="col-span-2">
+                              <p className="text-slate-600">Gender</p>
+                              <p className="font-medium text-slate-900">
+                                {face.gender}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Export Button */}
+                  <button className="w-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold py-2 rounded-lg transition flex items-center justify-center gap-2 text-sm">
+                    <Download className="w-4 h-4" />
+                    Download Report
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </Layout>
