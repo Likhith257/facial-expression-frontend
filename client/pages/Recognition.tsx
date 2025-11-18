@@ -355,6 +355,11 @@ export default function Recognition() {
                     <span className="font-semibold">Tip:</span> Different models provide different accuracy/speed tradeoffs. Try different combinations to find what works best for your use case.
                   </p>
                 </div>
+
+                {/* Start Button */}
+                <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg text-white font-semibold py-2 px-4 rounded-lg transition flex items-center justify-center gap-2">
+                  Start
+                </button>
               </div>
             </div>
           </div>
