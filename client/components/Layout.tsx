@@ -28,12 +28,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </Link>
             </nav>
 
-            <Link
-              to="/recognition"
-              className="hidden sm:inline-flex px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium hover:shadow-lg transition"
-            >
-              Get Started
-            </Link>
           </div>
         </div>
       </header>
